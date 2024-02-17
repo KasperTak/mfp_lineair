@@ -31,10 +31,10 @@ AOW_leeftijd = 68
 
 with tab1:
     column1, column2, column3 = st.columns(3)
-    VOOR_AOW = pd.read_excel(r"Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Voor AOW')
-    NA_AOW = pd.read_excel(r"Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Na AOW')
-    annuiteitentabel = pd.read_excel(r"Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Annuiteitenfactor') 
-    studieschuldtabel = pd.read_excel(r"Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Studieschuld') 
+    VOOR_AOW = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Voor AOW')
+    NA_AOW = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Na AOW')
+    annuiteitentabel = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Annuiteitenfactor') 
+    studieschuldtabel = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Studieschuld') 
     studieschuldtabel['Debetrente'] = studieschuldtabel['Debetrente'].apply(lambda x: f"{x:.3f}".replace('.',','))
     
     with column1:
