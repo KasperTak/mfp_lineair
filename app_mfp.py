@@ -12,7 +12,6 @@ import pandas as pd
 import altair as alt
 import base64
 import io
-from openpyxl import load_workbook
 
 
 st.set_page_config(page_title="Financiële Planning")
@@ -29,6 +28,7 @@ AOW_leeftijd = 68
 
 with tab1:
     column1, column2, column3 = st.columns(3)
+    from openpyxl import load_workbook
     workbook = load_workbook('Financieringspercentages_Annuiteitenfactor.xlsx')
     VOOR_AOW = workbook['Voor AOW']
     NA_AOW = workbook['Na AOW']
