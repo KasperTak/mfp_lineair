@@ -95,3 +95,4 @@ wcwidth
 webencodings
 widgetsnbextension
 zipp
+openpyxl
