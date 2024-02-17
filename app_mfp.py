@@ -12,9 +12,7 @@ import pandas as pd
 import altair as alt
 import base64
 import io
-#import openpyxl 
-
-
+from openpyxl import load_workbook
 
 
 st.set_page_config(page_title="Financiële Planning")
@@ -31,10 +29,16 @@ AOW_leeftijd = 68
 
 with tab1:
     column1, column2, column3 = st.columns(3)
-    VOOR_AOW = pd.read_excel("mfp_lineair/Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Voor AOW')
-    NA_AOW = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Na AOW')
-    annuiteitentabel = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Annuiteitenfactor') 
-    studieschuldtabel = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Studieschuld') 
+    workbook = load_workbook('Financieringspercentages_Annuiteitenfactor.xlsx')
+    VOOR_AOW = workbook['Voor AOW']
+    NA_AOW = workbook['Na AOW']
+    annuiteitentabel = workbook['Annuiteitenfactor']
+    studieschuldtabel = workbook['Studieschuld'] 
+    
+   # VOOR_AOW = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Voor AOW')
+   # NA_AOW = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Na AOW')
+   # annuiteitentabel = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Annuiteitenfactor') 
+   # studieschuldtabel = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Studieschuld') 
     studieschuldtabel['Debetrente'] = studieschuldtabel['Debetrente'].apply(lambda x: f"{x:.3f}".replace('.',','))
     
     with column1:
