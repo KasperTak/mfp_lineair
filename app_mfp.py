@@ -387,22 +387,3 @@ with tab3:
         lineaire_hypotheek(hoofdsom, tijdsperiode, rentepercentage)
         #df_resultaat = lineaire_hypotheek(hoofdsom, tijdsperiode, rentepercentage)
         
-
-
-#%% financieringspercentages
-import pandas as pd
-VOOR_AOW = pd.read_excel(r"C:\Users\Gebruiker\OneDrive - Office 365 Fontys\Documenten\Privé\Programmeren\Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Voor AOW')
-NA_AOW = pd.read_excel(r"C:\Users\Gebruiker\OneDrive - Office 365 Fontys\Documenten\Privé\Programmeren\Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Na AOW')
-studieschuldtabel = pd.read_excel(r"C:\Users\Gebruiker\OneDrive - Office 365 Fontys\Documenten\Privé\Programmeren\Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Studieschuld') 
-annuiteitentabel = pd.read_excel(r"C:\Users\Gebruiker\OneDrive - Office 365 Fontys\Documenten\Privé\Programmeren\Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Annuiteitenfactor') 
-studieschuldtabel['Debetrente'] = studieschuldtabel['Debetrente'].apply(lambda x: f"{x:.3f}".replace('.',','))
-        
-# max LTI & LTV allebei weergeven
-# LTI verplaatsen
-# Eindantwoord weergeven    
-
-#%%
-
-
-#aflossingen, rentebedragen, resterende_schulden = lineaire_hypotheek(hoofdsom, looptijd_jaren, rentepercentage)
-#print_aflossingstabel(aflossingen, rentebedragen, resterende_schulden)
