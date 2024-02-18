@@ -4,10 +4,10 @@ Created on Sun Feb  4 10:05:17 2024
 
 @author: Gebruiker
 """
+import streamlit as st
 import openpyxl
 import numpy as np
 import math
-import streamlit as st
 import pandas as pd
 import altair as alt
 import base64
