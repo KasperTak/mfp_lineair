@@ -28,7 +28,7 @@ AOW_leeftijd = 68
 
 with tab1:
     column1, column2, column3 = st.columns(3)
-    from openpyxl import load_workbook
+    import openpyxl
     workbook = load_workbook('Financieringspercentages_Annuiteitenfactor.xlsx')
     VOOR_AOW = workbook['Voor AOW']
     NA_AOW = workbook['Na AOW']
