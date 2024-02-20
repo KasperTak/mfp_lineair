@@ -39,7 +39,27 @@ with tab1:
    # NA_AOW = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Na AOW')
    # annuiteitentabel = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Annuiteitenfactor') 
    # studieschuldtabel = pd.read_excel("Financieringspercentages_Annuiteitenfactor.xlsx",sheet_name='Studieschuld') 
-    studieschuldtabel['Debetrente'] = studieschuldtabel['Debetrente'].apply(lambda x: f"{x:.3f}".replace('.',','))
+   # studieschuldtabel['Debetrente'] = studieschuldtabel['Debetrente'].apply(lambda x: f"{x:.3f}".replace('.',','))
+    kolomindex_debetrente = None
+    for kolom in studieschuldtabel.iter_cols(min_row=1, max_row=1):
+        for cel in kolom:
+            if cel.value == 'Debetrente':
+                kolomindex_debetrente = cel.column
+                break
+    
+    # Controleer of 'Debetrente' is gevonden
+    if kolomindex_debetrente is not None:
+        # Verwerk de kolom 'Debetrente'
+        for rij in studieschuldtabel.iter_rows(min_row=2, min_col=kolomindex_debetrente, max_col=kolomindex_debetrente):
+            cel = rij[0]  # Omdat we maar één kolom doorlopen, is er maar één cel in de rij
+            waarde = cel.value
+            # Voer verdere verwerking uit met de waarde, bijvoorbeeld formattering
+            geformatteerde_waarde = f"{waarde:.3f}".replace('.', ',')
+            # Plaats de geformatteerde waarde terug in de cel of doe iets anders mee
+            cel.value = geformatteerde_waarde
+    else:
+        print("Kolom 'Debetrente' niet gevonden in het werkblad 'Studieschuld'.")
+
     
     with column1:
         st.subheader("Partnerschap")
