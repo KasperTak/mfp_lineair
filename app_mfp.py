@@ -137,14 +137,30 @@ with tab1:
         schuld_2 = st.number_input('_Oplopende schuld 2 (bijv. kredietlimiet)_',value=0)
         schuld_3 = st.number_input('_Aflopende schuld (bijv. aflopend krediet)_',value=0)
         schuld_4 = st.number_input(label='_Maandelijkse last studieschuld_',value=0)
-    # juiste factor/opslag op maandelijkse lasten studieschuld mbt tot debetrente    
+    # juiste factor/opslag op maandelijkse lasten studieschuld mbt tot debetrente  
+        def bereken_mnd_studieschuld(studieschuldtabel, debetrente, schuld_4):
+            # Zoek de factor_studieschuld op basis van debetrente
+            factor_studieschuld = None
+            for row in range(1, studieschuldtabel.max_row + 1):
+                if studieschuldtabel.cell(row, 1).value == debetrente:
+                    factor_studieschuld = studieschuldtabel.cell(row, 2).value
+                    break
+        
+            # Bereken mnd_studieschuld indien factor_studieschuld gevonden is
+            if factor_studieschuld is not None:
+                return factor_studieschuld * schuld_4
+            else:
+                return 0
+        
+        # Bereken totale maandelijkse schuld
         if schuld_4 is not None:
-            factor_studieschuld = studieschuldtabel.loc[studieschuldtabel['Debetrente'] == debetrente,'Opslag'].values[0]
-            mnd_studieschuld = factor_studieschuld*schuld_4
+            mnd_studieschuld = bereken_mnd_studieschuld(studieschuldtabel, debetrente, schuld_4)
         else:
             mnd_studieschuld = 0
-        tot_mnd_schuld = schuld_1*0.02 + schuld_2*0.02 + schuld_3 + mnd_studieschuld
         
+        tot_mnd_schuld = schuld_1 * 0.02 + schuld_2 * 0.02 + schuld_3 + mnd_studieschuld
+        
+    # box maken    
         st.markdown(
             """
             <style>
