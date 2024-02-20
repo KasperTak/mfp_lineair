@@ -89,7 +89,7 @@ with tab1:
             debetrente = 5
             debetrente = "{:,.3f}".format(debetrente)
             debetrente = debetrente.replace('.', ',')
-        #    st.write(f"De debetrente is {debetrente}%")
+            st.write(f"De debetrente is {debetrente}%")
     # Als de tijd groter is dan 10 jaar, dan de werkelijke rente    
         else:
             if rentepercentage < 1.50:
@@ -110,7 +110,7 @@ with tab1:
                 if worksheet.cell(row, 1).value == toetsinkomen:
                     # Als toetsinkomen gevonden is, zoek de debetrente in dezelfde rij
                     for col in range(2, worksheet.max_column + 1):
-                        if worksheet.cell(1, col).value == 'debetrente':
+                        if worksheet.cell(1, col).value == debetrente:
                             # Als debetrente gevonden is, return de waarde
                             return worksheet.cell(row, col).value
         
@@ -124,12 +124,14 @@ with tab1:
         if woonquote is not None:    
             finan_ink = gez_ink * woonquote
             #st.write(f"Hiermee komt het financieringslastinkomen op €{finan_ink:.2f}")
+            finan_ink_maand = finan_ink/12
+            st.write(f"Maandelijks komt dit uit op €{finan_ink_maand:.2f}")
         else:
             st.write("er is iets fout gegaan.")
             st.write(f"gez. inkomen = {gez_ink}. En de woonquote is {woonquote}")
         
-        finan_ink_maand = finan_ink/12
-        #st.write(f"Maandelijks komt dit uit op €{finan_ink_maand:.2f}")
+     #   finan_ink_maand = finan_ink/12
+     #   st.write(f"Maandelijks komt dit uit op €{finan_ink_maand:.2f}")
         
         
     with column3:
