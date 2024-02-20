@@ -121,9 +121,12 @@ with tab1:
         else:
             woonquote = vind_woonquote(NA_AOW, toetsinkomen, debetrente)
        
-            
-        finan_ink = gez_ink * woonquote
-        #st.write(f"Hiermee komt het financieringslastinkomen op €{finan_ink:.2f}")
+        if woonquote is not None:    
+            finan_ink = gez_ink * woonquote
+            #st.write(f"Hiermee komt het financieringslastinkomen op €{finan_ink:.2f}")
+        else:
+            st.write("er is iets fout gegaan.")
+            st.write(f"gez. inkomen = {gez_ink}. En de woonquote is {woonquote}")
         
         finan_ink_maand = finan_ink/12
         #st.write(f"Maandelijks komt dit uit op €{finan_ink_maand:.2f}")
