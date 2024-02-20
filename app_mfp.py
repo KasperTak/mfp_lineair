@@ -105,11 +105,19 @@ with tab1:
 
     # leeftijd controleren voor juiste financieringslastpercentage.
         if leeftijd < AOW_leeftijd:
-            woonquote = VOOR_AOW.loc[VOOR_AOW['toetsinkomen'] == toetsinkomen, debetrente].values[0]
-            #st.write(f"Het financieringslastpercentage is {woonquote}")
+            woonquote = None
+          #  debetrente = debetrente.replace(',', '')
+            for rij in VOOR_AOW.iter_rows():
+                if rij[0].value == toetsinkomen:
+                    woonquote = rij[int(debetrente)].value
+                    break
         else:
-            woonquote = NA_AOW.loc[NA_AOW['toetsinkomen'] == toetsinkomen, debetrente].values[0]
-            #st.write(f"Het financieringslastpercentage is {woonquote}")
+            woonquote = None
+            for rij in NA_AOW.iter_rows():
+                if rij[0].value == int(toetsinkomen):
+                    woonquote = rij[int(debetrente)].value
+                    break
+       
             
         finan_ink = gez_ink * woonquote
         #st.write(f"Hiermee komt het financieringslastinkomen op €{finan_ink:.2f}")
