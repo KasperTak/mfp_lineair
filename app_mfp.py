@@ -106,10 +106,10 @@ with tab1:
     # leeftijd controleren voor juiste financieringslastpercentage.
   
         if leeftijd < AOW_leeftijd:
-            woonquote = VOOR_AOW[VOOR_AOW['toetsinkomen'] == toetsinkomen][debetrente].values[0]
+            woonquote = VOOR_AOW.query("toetsinkomen == @toetsinkomen")[debetrente].values[0]
             #st.write(f"Het financieringslastpercentage is {woonquote}")
         else:
-            woonquote = NA_AOW[NA_AOW['toetsinkomen'] == toetsinkomen][debetrente].values[0]
+            woonquote = NA_AOW.query("toetsinkomen == @toetsinkomen")[debetrente].values[0]
   
        
             
