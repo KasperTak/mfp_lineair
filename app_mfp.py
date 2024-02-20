@@ -101,7 +101,7 @@ with tab1:
                 debetrente = "{:,.3f}".format(debetrente)
                 debetrente = debetrente.replace('.', ',')
                 
-           # st.write(f"De debetrente is {debetrente}%")
+            st.write(f"De debetrente is {debetrente}%")
 
     # leeftijd controleren voor juiste financieringslastpercentage.
         def vind_woonquote(worksheet, toetsinkomen, debetrente):
@@ -110,7 +110,7 @@ with tab1:
                 if worksheet.cell(row, 1).value == toetsinkomen:
                     # Als toetsinkomen gevonden is, zoek de debetrente in dezelfde rij
                     for col in range(2, worksheet.max_column + 1):
-                        if worksheet.cell(1, col).value == debetrente:
+                        if worksheet.cell(1, col).value == 'debetrente':
                             # Als debetrente gevonden is, return de waarde
                             return worksheet.cell(row, col).value
         
