@@ -180,10 +180,10 @@ with tab1:
         st.write("---------------------------")
         
    # Definieer functie om de annuïteitenfactor te vinden
-        def vind_annuiteitenfactor(annuiteitentabel, ann_rente, tijdsperiode):
-            for row in range(1, annuiteitentabel.max_row + 1):
-                if annuiteitentabel.cell(row, 1).value == ann_rente:
-                    return annuiteitentabel.cell(row, tijdsperiode).value
+    def vind_annuiteitenfactor(annuiteitentabel, ann_rente, tijdsperiode):
+        for row in range(1, annuiteitentabel.max_row + 1):
+            if annuiteitentabel.cell(row=row, column=1).value == ann_rente:
+                return annuiteitentabel.cell(row=row, column=tijdsperiode).value
         
         # Bereken de annuïteitenfactor en hypotheeklasten-tot-inkomen ratio (LTI)
         ann_bedrag = finan_ink_maand - tot_mnd_schuld
