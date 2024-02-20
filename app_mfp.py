@@ -111,7 +111,7 @@ with tab1:
                 if worksheet.cell(row, 1).value == toetsinkomen:
                     # Als toetsinkomen gevonden is, zoek de debetrente in dezelfde rij
                     for col in range(2, worksheet.max_column + 1):
-                        if worksheet.cell(1, col).value == debetrente:
+                        if worksheet.cell(1, col).value == str(debetrente):
                             # Als debetrente gevonden is, return de waarde
                             return worksheet.cell(row, col).value
         
