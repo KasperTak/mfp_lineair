@@ -106,18 +106,18 @@ with tab1:
     # leeftijd controleren voor juiste financieringslastpercentage.
         def vind_woonquote(worksheet, toetsinkomen, debetrente):
         # Zoek de rij die overeenkomt met het toetsinkomen
-        for row in range(1, worksheet.max_row + 1):
-            if worksheet.cell(row, 1).value == toetsinkomen:
-                # Als toetsinkomen gevonden is, zoek de debetrente in dezelfde rij
-                for col in range(2, worksheet.max_column + 1):
-                    if worksheet.cell(1, col).value == debetrente:
-                        # Als debetrente gevonden is, return de waarde
-                        return worksheet.cell(row, col).value
-    
-    # Gebruik de functie om de woonquote te vinden
+            for row in range(1, worksheet.max_row + 1):
+                if worksheet.cell(row, 1).value == toetsinkomen:
+                    # Als toetsinkomen gevonden is, zoek de debetrente in dezelfde rij
+                    for col in range(2, worksheet.max_column + 1):
+                        if worksheet.cell(1, col).value == debetrente:
+                            # Als debetrente gevonden is, return de waarde
+                            return worksheet.cell(row, col).value
+        
+        # Gebruik de functie om de woonquote te vinden
         if leeftijd < AOW_leeftijd:
             woonquote = vind_woonquote(VOOR_AOW, toetsinkomen, debetrente)
-            #st.write(f"Het financieringslastpercentage is {woonquote}")
+                #st.write(f"Het financieringslastpercentage is {woonquote}")
         else:
             woonquote = vind_woonquote(NA_AOW, toetsinkomen, debetrente)
        
