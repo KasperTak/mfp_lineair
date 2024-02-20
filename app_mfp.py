@@ -178,12 +178,19 @@ with tab1:
         st.write(f'<div class="container-style">De totale maandelijkse schuld is €{tot_mnd_schuld}</div>', unsafe_allow_html=True)
     
         st.write("---------------------------")
-    # annuïteitenfactor   
-        ann_bedrag = finan_ink_maand - tot_mnd_schuld
-        ann_rente = round(rentepercentage/100,3)
         
-        ann_factor = annuiteitentabel.loc[annuiteitentabel['Rentepercentage'] == ann_rente, f'{tijdsperiode}'].values[0]
-        hypo_LTI = ann_factor*ann_bedrag
+   # Definieer functie om de annuïteitenfactor te vinden
+        def vind_annuiteitenfactor(annuiteitentabel, ann_rente, tijdsperiode):
+            for row in range(1, annuiteitentabel.max_row + 1):
+                if annuiteitentabel.cell(row, 1).value == ann_rente:
+                    return annuiteitentabel.cell(row, tijdsperiode).value
+        
+        # Bereken de annuïteitenfactor en hypotheeklasten-tot-inkomen ratio (LTI)
+        ann_bedrag = finan_ink_maand - tot_mnd_schuld
+        ann_rente = round(rentepercentage / 100, 3)
+        
+        ann_factor = vind_annuiteitenfactor(annuiteitentabel, ann_rente, tijdsperiode)
+        hypo_LTI = ann_factor * ann_bedrag
         
     # uiteindelijke button om te zien hoeveel er maximaal geleend kan worden.    
     with column1:
