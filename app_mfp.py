@@ -67,7 +67,8 @@ with tab1:
     # input vanuit gast
         gez_ink = st.number_input("_Gezamenlijk bruto jaarinkomen_", 0,999999999,0)
         toetsinkomen = 500 * math.floor(gez_ink/500)
-        #st.write(f"Het gezamenlijk brutojaarinkomen is €{gez_ink}")
+        st.write(f"Het gezamenlijk brutojaarinkomen is €{gez_ink}")
+        st.write(f"Het toetsinkomen is €{toetsinkomen}")
     # leeftijd nodig voor AOW-leeftijd: JA/NEE    
         leeftijd = st.number_input("_Leeftijd oudste partner_",0,120,18)
     #    st.write(f"De oudste partner is {leeftijd} jaar.")
